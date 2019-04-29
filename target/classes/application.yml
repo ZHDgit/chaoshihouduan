@@ -1,0 +1,26 @@
+server:
+  port: 8082
+beet-beetlsql:
+  dev: true
+tomcat:
+  max-http-header-size: 8192
+spring:
+  datasource:
+    driver: com.mysql.jdbc.Driver
+    druid:
+      url: jdbc:mysql://120.79.186.166:3306/chaoshi?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=CTT
+      username: root
+      initial-size: 5
+      max-active: 20
+      min-idle: 10
+      max-wait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      filters: stat,wall
+      filter.stat.log-slow-sql: true
+      filter.stat.slow-sql-millis: 2000
+      password: 123456
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
