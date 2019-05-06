@@ -62,4 +62,18 @@ public class UserAction {
         }
         return new ReturnString(0,"登录成功");
     }
+
+    @ApiOperation(value = "验证用户名是否唯一接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "path", name = "userName", dataType = "String", required = true,value = "用户名称"),
+    })
+    @PostMapping("checkUserName/{userName}")
+    public ReturnString checkUserName(@PathVariable String userName){
+        CsUser user = csUserService.getUser(userName);
+        if(user == null){
+            return new ReturnString(0,"用户名可以注册！");
+        }else {
+            return new ReturnString("用户名已经存在！");
+        }
+    }
 }
