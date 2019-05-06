@@ -3,12 +3,17 @@ import com.springboot.demo.common.ReturnString;
 import com.springboot.demo.model.CsUser;
 import com.springboot.demo.service.CsUserService;
 import com.springboot.demo.utils.DESUtil;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Created by xiegege on 2019/5/6.
+ */
+@Api(tags = "用户接口")
 @RestController
 @RequestMapping("user")
 public class UserAction {
