@@ -32,7 +32,7 @@ public class AdminAction {
             @ApiImplicitParam(paramType = "query", name = "csAdmin", dataType = "Object",value = "管理员资料"),
     })
     @PostMapping("addAdmin")
-    public ReturnString addAdmin(@RequestBody CsAdmin csAdmin){
+    public ReturnString addAdmin(CsAdmin csAdmin){
         try {
             csAdmin.setCreateDate(new Date());
             csAdmin.setAdminPassword(DESUtil.encrypt(csAdmin.getAdminPassword()));
@@ -50,7 +50,7 @@ public class AdminAction {
             @ApiImplicitParam(paramType = "query", name = "csAdmin", dataType = "Object",value = "管理员资料"),
     })
     @PostMapping("updateAdmin")
-    public ReturnString updateAdmin(@RequestBody CsAdmin csAdmin){
+    public ReturnString updateAdmin(CsAdmin csAdmin){
         try {
             csAdminService.updateAdmin(csAdmin);
             return new ReturnString(0,"修改管理员成功！");
