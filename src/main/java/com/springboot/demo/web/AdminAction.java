@@ -21,7 +21,7 @@ import java.util.Date;
  */
 @Api(tags = "管理员接口")
 @RestController
-@RequestMapping("user")
+@RequestMapping("admin")
 public class AdminAction {
 
     @Autowired
