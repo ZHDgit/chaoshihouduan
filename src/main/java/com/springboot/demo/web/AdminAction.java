@@ -5,7 +5,7 @@ import com.springboot.demo.model.CsAdmin;
 import com.springboot.demo.model.CsUser;
 import com.springboot.demo.service.CsAdminService;
 import com.springboot.demo.utils.DESUtil;
-import io.micrometer.core.instrument.Tags;
+import com.springboot.demo.web.vo.AdminVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author zhangpeikun
@@ -61,4 +63,41 @@ public class AdminAction {
 
     }
 
+    @ApiOperation(value = "管理员登录接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "adminVo", dataType = "Object",value = "管理员资料"),
+    })
+
+    @PostMapping("adminLogin")
+    public ReturnString userLogin(AdminVo adminVo){
+        CsAdmin admin = csAdminService.getAdmin(adminVo.getAdminName());
+        if(admin == null){
+            return new ReturnString("管理员不存在");
+        }
+        try {
+            if(!admin.getAdminPassword().equals(DESUtil.encrypt(adminVo.getAdminPassword()))){
+                return new ReturnString("登录失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ReturnString("登录失败");
+        }
+        Map map = new HashMap();
+        map.put("type", admin.getType());
+        return new ReturnString(map);
+    }
+
+    @ApiOperation(value = "验证管理员名称是否唯一接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "path", name = "adminName", dataType = "String", required = true,value = "管理员名称"),
+    })
+    @PostMapping("checkAdminName/{adminName}")
+    public ReturnString checkUserName(@PathVariable String adminName){
+        CsAdmin admin = csAdminService.getAdmin(adminName);
+        if(admin == null){
+            return new ReturnString(0,"管理员名称注册！");
+        }else {
+            return new ReturnString("管理员名称已经存在！");
+        }
+    }
 }
