@@ -1,6 +1,5 @@
 package com.springboot.demo.model;
 
-import sun.dc.pr.PRError;
 
 /**
  * Created by xiegege on 2019/5/6.
@@ -32,6 +31,16 @@ public class CsGoods {
      * 商品介绍
      */
     private String goodsIntroduce;
+
+    /**
+     * 商品分类：1|杂货 2|家用 3|个人护理 4|包装食品 5|饮料&酒水 6|水果
+     */
+    private Integer goodsCategory;
+
+    /**
+     * 商品类型：1|今日热卖 2|今日优惠 3|新品推荐
+     */
+    private Integer goodsType;
 
     public Integer getId() {
         return id;
@@ -87,5 +96,21 @@ public class CsGoods {
 
     public void setGoodsIntroduce(String goodsIntroduce) {
         this.goodsIntroduce = goodsIntroduce;
+    }
+
+    public Integer getGoodsCategory() {
+        return goodsCategory;
+    }
+
+    public void setGoodsCategory(Integer goodsCategory) {
+        this.goodsCategory = goodsCategory;
+    }
+
+    public Integer getGoodsType() {
+        return goodsType;
+    }
+
+    public void setGoodsType(Integer goodsType) {
+        this.goodsType = goodsType;
     }
 }
