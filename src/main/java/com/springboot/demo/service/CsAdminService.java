@@ -34,7 +34,7 @@ public class CsAdminService {
     }
 
     public List<CsAdmin> getAdminList() {
-        return sqlManager.all(CsAdmin.class);
+        return sqlManager.select("csAdmin.getAdminList", CsAdmin.class);
     }
 
 }
