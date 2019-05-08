@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -98,6 +99,18 @@ public class AdminAction {
             return new ReturnString(0,"管理员名称注册！");
         }else {
             return new ReturnString("管理员名称已经存在！");
+        }
+    }
+
+    @ApiOperation(value = "查询管理员列表接口")
+    @PostMapping("getAdminList")
+    public ReturnString getAdminList(){
+        try {
+            List<CsAdmin> adminList = csAdminService.getAdminList();
+            return new ReturnString(adminList);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ReturnString("查询管理员列表失败！");
         }
     }
 }

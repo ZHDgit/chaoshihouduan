@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,6 +31,10 @@ public class CsAdminService {
         Map map = new HashMap<>();
         map.put("adminName", adminName);
         return sqlManager.selectSingle("csAdmin.getAdmin", map, CsAdmin.class);
+    }
+
+    public List<CsAdmin> getAdminList() {
+        return sqlManager.all(CsAdmin.class);
     }
 
 }
