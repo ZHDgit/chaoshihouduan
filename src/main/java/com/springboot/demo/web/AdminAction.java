@@ -55,6 +55,7 @@ public class AdminAction {
     @PostMapping("updateAdmin")
     public ReturnString updateAdmin(CsAdmin csAdmin){
         try {
+            csAdmin.setAdminPassword(DESUtil.encrypt(csAdmin.getAdminPassword()));
             csAdminService.updateAdmin(csAdmin);
             return new ReturnString(0,"修改管理员成功！");
         } catch (Exception e) {
