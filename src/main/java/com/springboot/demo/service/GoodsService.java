@@ -28,4 +28,18 @@ public class GoodsService {
         map.put("searchType", searchType);
         return sqlManager.select("csGoods.getGoodsList", CsGoods.class, map);
     }
+
+    public int deleteGoodsById(CsGoods goods) {
+        return sqlManager.deleteObject(goods);
+    }
+
+    public CsGoods getGoodsById(Integer goodsId) {
+        Map map = new HashMap<>();
+        map.put("goodsId", goodsId);
+        return sqlManager.selectSingle("csGoods.getGoodsById", map, CsGoods.class);
+    }
+
+    public int updateGoods(CsGoods goods) {
+        return sqlManager.updateById(goods);
+    }
 }
