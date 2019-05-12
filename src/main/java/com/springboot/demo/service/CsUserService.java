@@ -23,4 +23,14 @@ public class CsUserService {
         map.put("userName", userName);
         return sqlManager.selectSingle("csUser.getUser", map, CsUser.class);
     }
+
+    public CsUser getUserById(Integer userId) {
+        Map map = new HashMap<>();
+        map.put("userId", userId);
+        return sqlManager.selectSingle("csUser.getUserById", map, CsUser.class);
+    }
+
+    public int updatePassword(CsUser user) {
+        return sqlManager.updateById(user);
+    }
 }
