@@ -9,6 +9,7 @@ public class OrderVo {
     private Integer goodsId;
     private String goodsName;
     private Integer num;
+    private Double goodsOfferPrice;
 
     public Integer getOrderId() {
         return orderId;
@@ -40,5 +41,13 @@ public class OrderVo {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Double getGoodsOfferPrice() {
+        return goodsOfferPrice;
+    }
+
+    public void setGoodsOfferPrice(Double goodsOfferPrice) {
+        this.goodsOfferPrice = goodsOfferPrice;
     }
 }
