@@ -1,5 +1,7 @@
 package com.springboot.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 /**
@@ -11,8 +13,9 @@ public class CsOrder {
     private String phone;
     private String address;
     private Double price;
-    private Integer num;
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
+    private String[] goodsIds;
 
     public Integer getId() {
         return id;
@@ -46,19 +49,19 @@ public class CsOrder {
         this.price = price;
     }
 
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
     public Date getCreateDate() {
         return createDate;
     }
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public String[] getGoodsIds() {
+        return goodsIds;
+    }
+
+    public void setGoodsIds(String[] goodsIds) {
+        this.goodsIds = goodsIds;
     }
 }

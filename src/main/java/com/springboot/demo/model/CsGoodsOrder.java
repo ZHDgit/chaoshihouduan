@@ -7,6 +7,7 @@ public class CsGoodsOrder {
 
     private Integer orderId;
     private Integer goodsId;
+    private Integer num;
 
     public Integer getOrderId() {
         return orderId;
@@ -22,5 +23,13 @@ public class CsGoodsOrder {
 
     public void setGoodsId(Integer goodsId) {
         this.goodsId = goodsId;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
     }
 }
