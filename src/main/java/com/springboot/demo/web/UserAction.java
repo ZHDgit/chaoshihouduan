@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xiegege on 2019/5/6.
@@ -105,11 +108,29 @@ public class UserAction {
                 if (count < 1) {
                     return new ReturnString("修改密码失败");
                 }
+                return new ReturnString(0, "修改密码成功");
             }
-            return new ReturnString(0, "修改密码成功");
         } catch (Exception e) {
             e.printStackTrace();
             return new ReturnString("修改密码失败");
+        }
+    }
+
+    @ApiOperation(value = "会员列表接口")
+    @ApiImplicitParams({
+
+    })
+    @PostMapping("getUserList")
+    public ReturnString getUserList() {
+        try {
+            Map<String, Object> map = new HashMap<>();
+            List<CsUser> userList = csUserService.getUserList();
+            map.put("userList", userList);
+            map.put("userAmount", userList.size());
+            return new ReturnString(map);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ReturnString("获取会员列表接口出错");
         }
     }
 }

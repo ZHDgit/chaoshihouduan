@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -32,5 +33,9 @@ public class CsUserService {
 
     public int updatePassword(CsUser user) {
         return sqlManager.updateById(user);
+    }
+
+    public List<CsUser> getUserList() {
+        return sqlManager.select("csUser.getUserList", CsUser.class);
     }
 }
