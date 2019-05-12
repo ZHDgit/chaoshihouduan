@@ -1,14 +1,15 @@
 package com.springboot.demo.service;
 
-import com.springboot.demo.model.CsGoodsOrder;
 import com.springboot.demo.model.CsOrder;
+import com.springboot.demo.model.CsGoodsOrder;
+import com.springboot.demo.web.vo.OrderVo;
 import org.beetl.sql.core.SQLManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 /**
  * @author zhangpeikun
@@ -20,10 +21,10 @@ public class OrderService {
     @Autowired
     private SQLManager sqlManager;
 
-    public void addOrder (CsOrder order){
+    public void addOrder(CsOrder order) {
         sqlManager.insertTemplate(order, true);
         Map map = new HashMap();
-        Integer orderId = sqlManager.selectSingle("order.getMaxOrderId", map,Integer.class);
+        Integer orderId = sqlManager.selectSingle("order.getMaxOrderId", map, Integer.class);
         CsGoodsOrder goodsOrder = new CsGoodsOrder();
         String[] goodsIds = order.getGoodsIds();
         for (String goodsId : goodsIds) {
@@ -33,5 +34,15 @@ public class OrderService {
             goodsOrder.setOrderId(orderId);
             sqlManager.insert(goodsOrder);
         }
+    }
+
+    public List<CsOrder> getOrderList() {
+        return sqlManager.select("order.getOrderList", CsOrder.class);
+    }
+
+    public List<OrderVo> getOrderDetail(Integer orderId) {
+        Map map = new HashMap<>();
+        map.put("orderId", orderId);
+        return sqlManager.select("order.getOrderDetail", OrderVo.class, map);
     }
 }
