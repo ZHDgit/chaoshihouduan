@@ -1,6 +1,7 @@
 getMaxOrderId
 ===
-*获取订单最大id
+* 获取订单最大id
+
 SELECT MAX(id) FROM cs_order
 
 getOrderList

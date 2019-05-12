@@ -69,7 +69,7 @@ public class OrderAction {
         @ApiImplicitParam(paramType = "path", name = "orderId", dataType = "int", required = true, value = "订单id")
     })
     @PostMapping("getOrder/{orderId}")
-    public ReturnString getOrder(@PathVariable Integer orderId,HttpSession session) {
+    public ReturnString getOrder(@PathVariable Integer orderId, HttpSession session) {
         try{
             List<OrderVo> orderVos = orderService.getOrderDetail(orderId);
             return new ReturnString(orderVos);
