@@ -20,7 +20,6 @@ public class OrderService {
     @Autowired
     private SQLManager sqlManager;
 
-    @Transactional
     public void addOrder (CsOrder order){
         sqlManager.insertTemplate(order, true);
         Map map = new HashMap();
