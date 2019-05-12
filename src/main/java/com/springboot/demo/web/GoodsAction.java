@@ -56,11 +56,13 @@ public class GoodsAction {
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "path", name = "searchNumber", dataType = "String", required = true, value = "0|所有商品  商品分类：商品分类：1|杂货 2|家用 3|个人护理 4|包装食品 5|饮料&酒水 6|水果 或商品类型：1|今日热卖  2|今日优惠  3|新品推荐"),
             @ApiImplicitParam(paramType = "path", name = "searchType", dataType = "String", required = true, value = "0|所有商品  1|商品分类  2|商品类型"),
+            @ApiImplicitParam(paramType = "path", name = "pageNo", dataType = "String", required = true, value = "页码"),
+            @ApiImplicitParam(paramType = "path", name = "pageSize", dataType = "String", required = true, value = "每页大小"),
     })
-    @PostMapping("getGoodsList/{searchNumber}/{searchType}")
-    public ReturnString getGoodsList(@PathVariable Integer searchNumber, @PathVariable Integer searchType, HttpSession session) {
+    @PostMapping("getGoodsList/{searchNumber}/{searchType}/{pageNo}/{pageSize}")
+    public ReturnString getGoodsList(@PathVariable Integer searchNumber, @PathVariable Integer searchType, @PathVariable Integer pageNo, @PathVariable Integer pageSize, HttpSession session) {
         try {
-            List<CsGoods> goodsList = goodsService.getGoodsList(searchNumber, searchType);
+            List<CsGoods> goodsList = goodsService.getGoodsList(searchNumber, searchType, pageNo, pageSize);
             return new ReturnString(goodsList);
         } catch (Exception e) {
             e.printStackTrace();

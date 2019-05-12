@@ -2,6 +2,7 @@ package com.springboot.demo.service;
 
 import com.springboot.demo.model.CsGoods;
 import org.beetl.sql.core.SQLManager;
+import org.beetl.sql.core.engine.PageQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +23,16 @@ public class GoodsService {
         return sqlManager.insert(csGoods);
     }
 
-    public List<CsGoods> getGoodsList(Integer searchNumber, Integer searchType) {
+    public List<CsGoods> getGoodsList(Integer searchNumber, Integer searchType, Integer pageNo, Integer pageSize) {
         Map<String, Integer> map = new HashMap<>();
         map.put("searchNumber", searchNumber);
         map.put("searchType", searchType);
-        return sqlManager.select("csGoods.getGoodsList", CsGoods.class, map);
+
+        PageQuery pageQuery = new PageQuery();
+        pageQuery.setPageNumber(pageNo);
+        pageQuery.setPageSize(pageSize);
+        pageQuery.setParas(map);
+        return sqlManager.pageQuery("csGoods.getGoodsList", CsGoods.class, pageQuery).getList();
     }
 
     public int deleteGoodsById(CsGoods goods) {

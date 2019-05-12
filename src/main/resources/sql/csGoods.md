@@ -1,13 +1,21 @@
 getGoodsList
 ===
 * 获取商品列表
+
+select 
+@pageTag(){
+    a.*
+@} 
+from
+(
 select * from cs_goods cg
 @if(searchNumber!=0 && searchType==1){
     where cg.goods_category=#searchNumber#
 @} 
 @if(searchNumber!=0 && searchType==2){
     where cg.goods_type =#searchNumber#
-@} 
+@}
+) a
 
 getGoodsById
 ===
