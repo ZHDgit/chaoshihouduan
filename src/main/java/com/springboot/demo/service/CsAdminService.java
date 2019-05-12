@@ -1,6 +1,7 @@
 package com.springboot.demo.service;
 
 import com.springboot.demo.model.CsAdmin;
+import com.springboot.demo.model.CsGoods;
 import org.beetl.sql.core.SQLManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,14 @@ public class CsAdminService {
     public List<CsAdmin> getAdminList() {
         return sqlManager.select("csAdmin.getAdminList", CsAdmin.class);
     }
+
+    public CsAdmin getAdminById(String adminId) {
+        return sqlManager.single(CsAdmin.class, adminId);
+    }
+
+    public int deleteAdminById(CsAdmin admin) {
+        return sqlManager.deleteObject(admin);
+    }
+
 
 }

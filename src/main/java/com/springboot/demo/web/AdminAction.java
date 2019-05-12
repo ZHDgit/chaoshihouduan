@@ -114,4 +114,35 @@ public class AdminAction {
             return new ReturnString("查询管理员列表失败！");
         }
     }
+
+    @ApiOperation(value = "查询管理员接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "path", name = "adminId", dataType = "String", required = true,value = "管理员Id"),
+    })
+    @PostMapping("getAdminById/{adminId}")
+    public ReturnString getAdminById(@PathVariable String adminId){
+        try {
+            CsAdmin admin = csAdminService.getAdminById(adminId);
+            return new ReturnString(admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ReturnString("查询管理员失败！");
+        }
+    }
+
+    @ApiOperation(value = "删除管理员接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "path", name = "adminId", dataType = "String", required = true,value = "管理员Id"),
+    })
+    @PostMapping("deleteAdmin/{adminId}")
+    public ReturnString deleteAdmin(@PathVariable String adminId){
+        try {
+            CsAdmin admin = csAdminService.getAdminById(adminId);
+            csAdminService.deleteAdminById(admin);
+            return new ReturnString(0, "删除管理员成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ReturnString("删除管理员失败！");
+        }
+    }
 }
