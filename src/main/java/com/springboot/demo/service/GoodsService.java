@@ -23,10 +23,11 @@ public class GoodsService {
         return sqlManager.insert(csGoods);
     }
 
-    public List<CsGoods> getGoodsList(Integer searchNumber, Integer searchType, Integer pageNo, Integer pageSize) {
-        Map<String, Integer> map = new HashMap<>();
+    public List<CsGoods> getGoodsList(Integer searchNumber, Integer searchType, Integer pageNo, Integer pageSize, String searchText) {
+        Map map = new HashMap<>();
         map.put("searchNumber", searchNumber);
         map.put("searchType", searchType);
+        map.put("searchText", searchText);
 
         PageQuery pageQuery = new PageQuery();
         pageQuery.setPageNumber(pageNo);

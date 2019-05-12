@@ -9,11 +9,16 @@ select
 from
 (
 select * from cs_goods cg
-@if(searchNumber!=0 && searchType==1){
-    where cg.goods_category=#searchNumber#
+@if(searchText!=null && searchText!=""){
+    where cg.goods_name like '%#text(searchText)#%'
 @} 
-@if(searchNumber!=0 && searchType==2){
-    where cg.goods_type =#searchNumber#
+@if(searchText==null || searchText==""){
+    @if(searchNumber!=0 && searchType==1){
+        where cg.goods_category=#searchNumber#
+    @} 
+    @if(searchNumber!=0 && searchType==2){
+        where cg.goods_type =#searchNumber#
+    @}
 @}
 ) a
 
