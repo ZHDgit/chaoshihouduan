@@ -71,7 +71,7 @@ public class UserAction {
             e.printStackTrace();
             return new ReturnString("登录失败");
         }
-        return new ReturnString(0, "登录成功");
+        return new ReturnString(user.getId());
     }
 
     @ApiOperation(value = "验证用户名是否唯一接口")
